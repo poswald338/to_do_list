@@ -1,0 +1,9 @@
+<h1>Index page</h1>
+
+<% @tasks.each do |task| %>
+
+  <h3><%=task.title%></h3>
+  <p><%=task.description%></p>
+  <hr>
+
+<% end %>
