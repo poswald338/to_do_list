@@ -4,6 +4,7 @@
 
   <h3><%=task.title%></h3>
   <p><%=task.description%></p>
+  <%= link_to "Delete Task", task_path(task), method: :delete%>
   <hr>
 
 <% end %>

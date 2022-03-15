@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  validates_with TitleValidator
+  # validates_with TitleValidator
   validates :title, presence: true
   validates :description, presence: true
   validates :priority, presence: true, numericality: {less_than_or_equal_to: 3}
