@@ -30,8 +30,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(params.require(:task).permit(:title, :description, :priority))
       flash[:message] = "Task is updated successfully!"
-      byebug
-      redirect_to tasks_path
+      redirect_to @task
     else
       render 'edit'
     end
