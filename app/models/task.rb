@@ -1,3 +1,12 @@
+# Schema Data Tasks
+
+#   t.string "title"
+#   t.text "description"
+#   t.boolean "isComplete", default: false
+#   t.integer "priority"
+#   t.datetime "created_at", precision: 6, null: false
+#   t.datetime "updated_at", precision: 6, null: false
+
 class Task < ApplicationRecord
   # validates_with TitleValidator
   validates :title, presence: true
