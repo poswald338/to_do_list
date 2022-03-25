@@ -3,25 +3,44 @@
     <p><%= error %></p>
   <% end %>
 <% end %>
+<div class="col-12 col-md-8">
 
-<%= form_with(model: @task) do |form| %>
+  <%= form_with(model: @task) do |form| %>
 
-  <p>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </p>
-  <p>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </p>
-  <p>
-    <%= form.label :priority %>
-    <%= form.text_field :priority %>
-  </p>
-  <p>
-    <%= form.submit "Save Task" %>
-  </p>
+    <div class="mb-2">
+      <%= form.label :title, class: "form-label fw-bold" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :description, class: "form-label fw-bold" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+    <div class="mb-2">
+      <%= form.label :priority, class: "form-label fw-bold" %>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :priority, '1', class: "form-check-input" %>
+        <%= form.label :priority, "Low", class: "form-check-radio" %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%=form.radio_button :priority, '2', class: "form-check-input" %>
+        <%=form.label :priority, "Medium", class: "form-check-radio" %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%=form.radio_button :priority, '3', class: "form-check-input" %>
+        <%=form.label :priority, "High", class: "form-check-radio" %>
+      </div>
+    </div>
 
-<% end %>
+    <div class="mb-2">
+      <%= form.label :status, class: "form-label fw-bold" %>
+      <%= form.select :status, ["Incomplete", "In Progress", "Complete"], class: "form-select" %>
+    </div>
 
-<%= link_to "Go Back", tasks_path %>
+  <div>
+    <%= form.submit "Save Task", class: "btn btn-primary mt-2" %>
+  </div>
+
+  <% end %>
+
+  <%= link_to "Go Back", tasks_path %>
+</div>

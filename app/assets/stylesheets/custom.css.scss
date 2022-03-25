@@ -1,4 +1,35 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+html, body {
+  height: 100%;
+}
 
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+  z-index: 1;
+  position: static;
+  bottom: 0px;
+  width: 100%;
+}
+
+.no-dec {
+  text-decoration: none;
+  color: initial;
+}
+
+.no-dec:hover {
+  color: green;
+}
+
+.pad {
+  min-height: 80vh ;
+}
+
+.card {
+  border: 1px solid black;
+}
 
