@@ -6,8 +6,11 @@
 #   t.datetime "updated_at", precision: 6, null: false
 
 class User < ApplicationRecord 
-  has_and_belongs_to_many :tasks
+  has_secure_password
+  has_many :users_tasks
+  has_many :tasks, through: :users_tasks
 
   validates :username, presence: true
   validates :email, presence: true
+  validates :password, presence: true
 end
