@@ -47,6 +47,6 @@ before_action :set_task, only: [:show, :update, :edit, :destroy]
   end
 
   def get_params
-    params.require(:task).permit(:title, :description, :priority)
+    params.require(:task).permit(:title, :description, :priority, :status)
   end
 end
