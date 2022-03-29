@@ -8,7 +8,8 @@
 #   t.datetime "updated_at", precision: 6, null: false
 
 class Task < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :users_tasks
+  has_many :users, through: :users_tasks
 
   # validates_with TitleValidator
   validates :title, presence: true
