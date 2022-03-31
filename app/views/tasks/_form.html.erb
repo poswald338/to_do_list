@@ -1,8 +1,4 @@
-<% if @task && @task.errors.any? %>
-  <% @task.errors.full_messages.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
+<%= render'shared/errors', obj: @task %>
 <div class="col-12 col-md-8">
 
   <%= form_with(model: @task) do |form| %>

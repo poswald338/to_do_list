@@ -1,11 +1,7 @@
-<% if obj && obj.errors.any? %>
-  <% obj.errors.full_messages.each do |error| %>
-    <p><%= error %></p>
-  <% end %>
-<% end %>
-<div class="w-100 d-flex justify-content-center">
+<%= render'shared/errors', obj: @user %>
+<div class="w-50 d-flex justify-content-center login-signup-form">
   <div class="col-12 col-md-8">
-  <%= form_with(model: obj) do |form| %>
+  <%= form_with(model: @user) do |form| %>
 
     <div class="mb-2">
       <%= form.label :username, class: "form-label fw-bold" %>

@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     
     if @task.save
       @task.users << current_user
-      flash[:message] = "A new task has been created!"
+      flash[:notice] = "A new task has been created!"
       redirect_to tasks_path
     else
       render :new
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(get_params)
-      flash[:message] = "Task is updated successfully!"
+      flash[:notice] = "Task is updated successfully!"
       redirect_to tasks_path
     else
       render 'edit'
