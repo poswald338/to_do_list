@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   def new
@@ -15,7 +15,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(get_params)
-    @task.created_by = current_user
+    @task.created_by = current_user.username
     
     if @task.save
       @task.users << current_user
