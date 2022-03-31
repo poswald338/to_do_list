@@ -14,6 +14,7 @@ html, body {
   position: static;
   bottom: 0px;
   width: 100%;
+  height: 10vh;
 }
 
 .no-dec {
@@ -26,10 +27,39 @@ html, body {
 }
 
 .pad {
-  min-height: 80vh ;
+  min-height: 90vh ;
 }
 
 .card {
   border: 1px solid black;
+}
+
+#home-background {
+  background-image: url('https://cdn.pixabay.com/photo/2018/06/20/07/33/planner-3485976_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+#overlay {
+  background-color: black;
+  opacity: .4;
+  height: inherit;
+  width: inherit;
+  z-index: 1
+}
+
+#abc {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.logo-home {
+  font-size: 42px;
+  font-weight: bold;
 }
 
