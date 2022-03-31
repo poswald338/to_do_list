@@ -1,36 +1,38 @@
-<h1 class="mb-4 mt-4 text-center">Your Current To-Do's</h1>
-<div class="row">
-  <div>
-    <h3>Filter:</h3>  
+<div class="container">
+  <h1 class="mb-4 mt-4 text-center">Your Current To-Do's</h1>
+  <div class="row">
+    <div>
+      <h3>Filter:</h3>  
+    </div>
   </div>
-</div>
-<div class="row">
-  <% @tasks.each do |task| %>
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="card shadow p-2 mb-4">
-        <%= link_to task_path(task), class: "no-dec" do %>
-          <h3><%=task.title%></h3>
-          <p><%=task.description%></p>
-        <% end %>
-        <div class="row mt-2">
-          <h3 class="fs-5 mb-0">Collaborators</h3>
-          <span>
-            <% task.users.each do |user|  %>
-              <%= user.username %>
-            <% end %>
-          </span>
-          <div class=" mt-2 col-12 d-inline-flex justify-content-between">
-            <div class="flex d-inline-flex">
-              <p class="mb-0 me-2">Status:</p>
-              <p class="mb-0"><%= task.status %></p>
-            </div>
-            <div class="flex d-inline-flex">
-              <p class="mb-0 me-2">Priority:</p>
-              <p class="mb-0"><%= task.priority %></p>
+  <div class="row">
+    <% @tasks.each do |task| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow p-2 mb-4">
+          <%= link_to task_path(task), class: "no-dec" do %>
+            <h3><%=task.title%></h3>
+            <p><%=task.description%></p>
+          <% end %>
+          <div class="row mt-2">
+            <h3 class="fs-5 mb-0">Collaborators</h3>
+            <span>
+              <% task.users.each do |user|  %>
+                <%= user.username %>
+              <% end %>
+            </span>
+            <div class=" mt-2 col-12 d-inline-flex justify-content-between">
+              <div class="flex d-inline-flex">
+                <p class="mb-0 me-2">Status:</p>
+                <p class="mb-0"><%= task.status %></p>
+              </div>
+              <div class="flex d-inline-flex">
+                <p class="mb-0 me-2">Priority:</p>
+                <p class="mb-0"><%= task.priority %></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
