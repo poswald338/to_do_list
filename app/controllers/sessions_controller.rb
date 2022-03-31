@@ -10,11 +10,12 @@ class SessionsController < ApplicationController
       flash[:notice] = "Successfully logged in!"
       redirect_to '/tasks'
     else
-      flash.now[:alert] = "Somethiung went wrong."
+      flash.now[:alert] = "Something went wrong."
       render :new
     end
   end
   def destroy
+    byebug
     session[:current_user_id] = nil
     flash[:notice] = "Successfully logged out"
     redirect_to root_path

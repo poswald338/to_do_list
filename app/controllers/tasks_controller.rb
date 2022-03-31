@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-before_action :set_task, only: [:show, :update, :edit, :destroy]
+  before_action :require_user
+  before_action :set_task, only: [:show, :update, :edit, :destroy]
 
   def show
   end
@@ -52,8 +53,4 @@ before_action :set_task, only: [:show, :update, :edit, :destroy]
     params.require(:task).permit(:title, :description, :priority, :status)
   end
 
-  def current_user
-    user = User.first
-    return user
-  end
 end
