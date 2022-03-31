@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-
+    @user = User.find(params[:id])
   end
 
   def index
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:current_user_id] = @user.id
       flash[:notice] = "You have been signed up successfully!"
       redirect_to '/tasks'
     else
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.new(user_params)
+    @user = User.find([:id])
 
     if @user.save
       render 'tasks/index'

@@ -10,15 +10,15 @@
           <%= link_to "Add To-do", new_task_path, class: "nav-link"%>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <%= link_to "To Do's", tasks_path, class: "nav-link" %>
         </li>
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
+              <span>Hello, </span> <%= current_user.username%>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">View Profile</a></li>
+              <li><%= link_to 'View Profile', user_path(current_user), class: "dropdown-item" %></li>
               <li><%= link_to 'Log Out', logout_path, class: "dropdown-item", method: :delete %></li>
               <li><a class="dropdown-item text-danger" href="#">Delete Account</a></li>
             </ul>
