@@ -1,10 +1,12 @@
-<h1>Task show page!</h1>
+<div class="container">
+  <h1>Task show page!</h1>
 
-<p>Title: <%= @task.title %></p>
-<p>Description: <%= @task.description %></p>
+  <p>Title: <%= @task.title %></p>
+  <p>Description: <%= @task.description %></p>
 
-<%= @task.created_by.username %>
+  <%= @task.created_by.username %>
 
-<%= link_to "Go Back", tasks_path %>
-<%= link_to "Edit Task", edit_task_path(@task) %>
+  <%= link_to "Go Back", tasks_path %>
+  <%= link_to "Edit Task", edit_task_path(@task) %>
+</div>
 
