@@ -3,6 +3,8 @@
 <p>Title: <%= @task.title %></p>
 <p>Description: <%= @task.description %></p>
 
+<%= @task.created_by.username %>
+
 <%= link_to "Go Back", tasks_path %>
 <%= link_to "Edit Task", edit_task_path(@task) %>
 

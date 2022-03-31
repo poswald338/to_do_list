@@ -14,8 +14,10 @@ before_action :set_task, only: [:show, :update, :edit, :destroy]
 
   def create
     @task = Task.new(get_params)
-
+    @task.created_by = current_user
+    
     if @task.save
+      @task.users << current_user
       flash[:message] = "A new task has been created!"
       redirect_to tasks_path
     else
@@ -48,5 +50,10 @@ before_action :set_task, only: [:show, :update, :edit, :destroy]
 
   def get_params
     params.require(:task).permit(:title, :description, :priority, :status)
+  end
+
+  def current_user
+    user = User.first
+    return user
   end
 end

@@ -15,14 +15,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render tasks_path
+      flash[:notice] = "You have been signed up successfully!"
+      redirect_to '/tasks'
     else
       render :new
     end
   end
 
   def update
+    @user = User.new(user_params)
 
+    if @user.save
+      render 'tasks/index'
+    else
+      render :new
+    end
   end
 
   def destroy
