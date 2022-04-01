@@ -6,6 +6,11 @@
 
   <%= @task.created_by %>
 
+  <h4>Collaborators:</h4>
+  <% @task.users.each do |user| %>
+    <%= user.username %>
+  <% end %>
+
   <%= link_to "Go Back", tasks_path %>
   <%= link_to "Edit Task", edit_task_path(@task) %>
 </div>

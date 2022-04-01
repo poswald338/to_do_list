@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user
+  before_action :require_same_user, only: [:show, :update, :edit]
   before_action :set_task, only: [:show, :update, :edit, :destroy]
 
   def show
@@ -51,6 +52,14 @@ class TasksController < ApplicationController
 
   def get_params
     params.require(:task).permit(:title, :description, :priority, :status)
+  end
+
+  def require_same_user
+    task = set_task
+    if !task.users.include? current_user
+      flash[:alert] = "You can only view tasks which you are a collaborator on."
+      redirect_to tasks_path
+    end
   end
 
 end
