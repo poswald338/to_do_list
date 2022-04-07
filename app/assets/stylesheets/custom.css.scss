@@ -1,7 +1,18 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+@font-face {
+  font-family: 'Oswald-Regular';
+  src: asset-url( 'app/assets/fonts/Oswald-Regular.ttf') format('truetype')
+}
+
 html, body {
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 1px;
 }
 
 #page-content {
@@ -60,7 +71,6 @@ html, body {
 
 .logo-home {
   font-size: 64px;
-  font-weight: bold;
 }
 
 .login-signup-form {
