@@ -7,8 +7,8 @@
   </div>
   <div class="row">
     <% @tasks.each do |task| %>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow p-2 mb-4">
+      <div class="col-12 col-md-6">
+        <div class="card shadow p-2">
           <%= link_to task_path(task), class: "no-dec" do %>
             <h3><%=task.title%></h3>
             <p><%=task.description%></p>
@@ -32,6 +32,7 @@
             </div>
           </div>
         </div>
+        <p class="text-center">Created by: <span class="fst-italic"><%= task.created_by %></span></p>
       </div>
     <% end %>
   </div>
