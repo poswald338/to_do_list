@@ -84,6 +84,16 @@ h1 {
   max-width: 750px
 }
 
+// Text color for specific status
+.Incomplete {
+  color: orange;
+} 
+.In{
+  color: blue;
+}
+.Complete{
+  color: green;
+}
 @media(max-width: 768px) {
   .login-signup-form{
     max-width: fit-content;

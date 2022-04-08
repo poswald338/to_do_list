@@ -1,7 +1,7 @@
 <div class="container">
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb" class="mt-2">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Tasks List", tasks_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Tasks List", tasks_path, class: "text-decoration-none" %></li>
       <li class="breadcrumb-item active" aria-current="page">Task Details</li>
     </ol>
   </nav>
@@ -13,26 +13,39 @@
   </div>
   <div class="d-flex justify-content-center">
     <div style="width: 700px;">
-      <h4 class="mb-2">Description:</h4>
-      <p><%= @task.description %></p>
-
-      <h4 class="mb-2">Collaborators:</h4>
-      
-      <div>
-        <% @task.users.each do |user| %>
-          <div class="d-flex justify-content-between">
-            <% if user == @current_user %>
-              <p>You</p>
-            <% else %>
-              <p><%= user.username %></p>
-            <% end %>
-            <% if @task.created_by == @current_user.username && user != current_user %>
-              <p class="text-danger">Remove User</p>
-            <% end %>
-          </div>
-        <% end %>
+      <div class="border p-2">
+        <p class="mb-2">Description:</p>
+        <p><%= @task.description %></p>
       </div>
+      <div class="d-flex justify-content-between mt-5">
+        <div>
+          <p class="mb-2 text-decoration-underline">Collaborators</p>
+          <% @task.users.each do |user| %>
+            <div class="d-flex justify-content-between">
+              <% if user == @current_user %>
+                <%= link_to "You", user_path(user), class: "badge rounded-pill bg-primary mb-2 text-decoration-none" %>
+              <% else %>
+                <%= link_to user.username, user_path(user), class: "badge rounded-pill bg-primary mb-2 text-decoration-none" %>
+              <% end %>
+              <% if @task.created_by == @current_user.username && user != current_user %>
+                <p class="text-danger">Remove User</p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <p class="text-decoration-underline">Priority</p>
+          <p class="fw-bold text-center"><%= @task.priority %></p>
+        </div>
+        <div>
+          <p class="text-decoration-underline">Status</p>
+          <p class="<%= @task.status %> fw-bold"><%= @task.status %></p>
+        </div>
+      </div>
+      <p class="mt-4 mb-2">Notes:</p>
+      <div class="border mb-5" style="width: 700px; min-height: 300px;">
 
+      </div>
     </div>
   </div>
 </div>
