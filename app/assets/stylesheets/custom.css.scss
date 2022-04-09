@@ -11,8 +11,8 @@ html, body {
 }
 
 h1 {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  letter-spacing: 1px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  // letter-spacing: 1px;
 }
 
 #page-content {
@@ -54,19 +54,22 @@ h1 {
   width: 100%;
 }
 #overlay {
-  background-color: black;
-  opacity: .4;
+  // background-color: black;
+  // opacity: .6;
+  position: relative;
+  background: linear-gradient(to left, rgba(0,0,0,.6), rgba(0,0,0,1));
   height: inherit;
   width: inherit;
-  z-index: 1;
 }
 
 #abc {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
+  width: 50%;
+  left: 0;
+  top: 10%;
+  // padding-left: 25px;
+  // transform: translate(0 , 0);
+  // padding: 10px;
 }
 
 .logo-home {
