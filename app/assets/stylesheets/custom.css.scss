@@ -12,7 +12,6 @@ html, body {
 
 h1 {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-  // letter-spacing: 1px;
 }
 
 #page-content {
@@ -54,8 +53,6 @@ h1 {
   width: 100%;
 }
 #overlay {
-  // background-color: black;
-  // opacity: .6;
   position: relative;
   background: linear-gradient(to left, rgba(0,0,0,.6), rgba(0,0,0,1));
   height: inherit;
@@ -67,9 +64,6 @@ h1 {
   width: 50%;
   left: 0;
   top: 10%;
-  // padding-left: 25px;
-  // transform: translate(0 , 0);
-  // padding: 10px;
 }
 
 .logo-home {
@@ -97,6 +91,7 @@ h1 {
 .Complete{
   color: green;
 }
+
 @media(max-width: 768px) {
   .login-signup-form{
     max-width: fit-content;
