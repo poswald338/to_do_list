@@ -1,5 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+$theme-colors: (
+  "primary": rgb(23, 155, 47)
+  );
+  
+@import 'bootstrap/scss/bootstrap';
 @font-face {
   font-family: 'Oswald-Regular';
   src: asset-url( 'app/assets/fonts/Oswald-Regular.ttf') format('truetype')

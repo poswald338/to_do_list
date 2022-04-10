@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       flash[:notice] = "Successfully logged in!"
       redirect_to '/tasks'
     else
-      flash.now[:alert] = "Something went wrong."
-      render :new
+      flash[:alert] = "Something went wrong."
+      redirect_to ''
     end
   end
   def destroy

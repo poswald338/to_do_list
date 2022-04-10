@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :update, :destroy]
+
   def show
     @user = User.find(params[:id])
   end
@@ -12,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     @user = User.new(user_params)
 
     if @user.save
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find([:id])
+    @user = User.find(params[:id])
 
     if @user.save
       render 'tasks/index'
@@ -35,10 +36,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    @user.destroy
+    session[:current_user_id] = nil
+    flash[:notice] = "Account successfully deleted"
+    redirect_to root_path
   end
+  
+  private
 
   def user_params 
     params.require(:user).permit(:username, :email, :password, :img_path)
+  end
+
+  def set_user 
+    @user = User.find(params[:id])
   end
 end

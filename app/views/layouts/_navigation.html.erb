@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid text-white">
-    <%= link_to "2-Do List", tasks_path, class: "navbar-brand fw-bold"%>
+    <%= link_to "2-Do List", root_path, class: "navbar-brand fw-bold"%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,7 +20,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><%= link_to 'View Profile', user_path(current_user), class: "dropdown-item" %></li>
               <li><%= link_to 'Log Out', logout_path, class: "dropdown-item", method: :delete %></li>
-              <li><a class="dropdown-item text-danger" href="#">Delete Account</a></li>
+              <li><%= link_to "Delete Account", user_path(current_user), data: { confirm: 'Are you sure?' }, method: :delete, class: "dropdown-item text-danger" %></li>
             </ul>
           </li>
         <% end %>
