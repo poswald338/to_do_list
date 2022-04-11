@@ -37,10 +37,6 @@ h1 {
   color: initial;
 }
 
-.no-dec:hover {
-  color: green;
-}
-
 .pad {
   min-height: 90vh ;
 }
@@ -95,6 +91,21 @@ h1 {
 }
 .Complete{
   color: green;
+}
+.card.Incomplete {
+  background-color: rgba(255, 166, 0, 0.445);
+  background-blend-mode: lighten;
+} 
+.card.In{
+  background-color: rgba(0, 0, 255, 0.45);
+}
+.card.Complete{
+  background-color: rgba(0, 128, 0, 0.454);
+}
+.card{
+  h3, p, span{
+    color: initial;
+  }
 }
 
 @media(max-width: 768px) {

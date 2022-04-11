@@ -23,12 +23,12 @@
           <% @task.users.each do |user| %>
             <div class="d-flex justify-content-between">
               <% if user == @current_user %>
-                <%= link_to "You", user_path(user), class: "badge rounded-pill bg-primary mb-2 text-decoration-none" %>
+                <%= link_to "You", user_path(user), class: "badge rounded-pill p-2 bg-primary mb-2 text-decoration-none" %>
               <% else %>
-                <%= link_to user.username, user_path(user), class: "badge rounded-pill bg-primary mb-2 text-decoration-none" %>
+                <%= link_to user.username, user_path(user), class: "badge rounded-pill p-2 bg-primary mb-2 text-decoration-none" %>
               <% end %>
               <% if @task.created_by == @current_user.username && user != current_user %>
-                <p class="text-danger">Remove User</p>
+                <p class="ms-4 mb-0 text-danger">Remove User</p>
               <% end %>
             </div>
           <% end %>
