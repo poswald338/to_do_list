@@ -8,22 +8,10 @@
 </svg>  
 <div>
   <% flash.each do |name, msg| %>
-    <% if name == 'notice' %>
-      <div class="m-0 alert alert-success d-flex align-items-center alert-dismissable fade show" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-        <div>
-          <%= msg %>
-        </div>
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% else %>
-      <div class="m-0 alert alert-danger d-flex align-items-center alert-dismissable fade show" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-        <div>
-          <%= msg %>
-        </div>
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
+    <div data-controller="messages">
+      <div data-info='<%= msg %>' name="message[message]" data-messages-target="message"></div>
+      <div data-info='<%= name %>' name="message[name]" data-messages-target="name"></div>
+      <div></div>
+    </div>
   <% end %>
 </div>

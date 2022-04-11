@@ -1,8 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap';
 
-$theme-colors: (
-  "primary": rgb(23, 155, 47)
-  );
+$primary: rgb(20, 134, 41);
   
 @import 'bootstrap/scss/bootstrap';
 @font-face {
@@ -43,6 +41,9 @@ h1 {
 
 .card {
   border: 1px solid black;
+}
+.card:hover{
+  color: initial;
 }
 
 #home-background {
@@ -91,21 +92,6 @@ h1 {
 }
 .Complete{
   color: green;
-}
-.card.Incomplete {
-  background-color: rgba(255, 166, 0, 0.445);
-  background-blend-mode: lighten;
-} 
-.card.In{
-  background-color: rgba(0, 0, 255, 0.45);
-}
-.card.Complete{
-  background-color: rgba(0, 128, 0, 0.454);
-}
-.card{
-  h3, p, span{
-    color: initial;
-  }
 }
 
 @media(max-width: 768px) {

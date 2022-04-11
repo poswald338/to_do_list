@@ -1,8 +1,8 @@
 <div class="container">
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb" class="mt-2">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Tasks List", tasks_path %></li>
-      <li class="breadcrumb-item" aria-current="page"><%= link_to "Task Details", task_path(@task) %></li>
+      <li class="breadcrumb-item"><%= link_to "Tasks List", tasks_path, class: "no-dec" %></li>
+      <li class="breadcrumb-item" aria-current="page"><%= link_to "Task Details", task_path(@task), class: "no-dec" %></li>
       <li class="breadcrumb-item active" aria-current="page">Edit Task</li>
     </ol>
   </nav>
@@ -11,7 +11,6 @@
       <h1>Edit your task!</h1>
 
       <%= render "form" %>
-      <%= link_to "Delete Task", task_path(@task), method: :delete %>
     </div>
   </div>
 </div>

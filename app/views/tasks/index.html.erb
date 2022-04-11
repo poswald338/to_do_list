@@ -9,7 +9,7 @@
     <% @tasks.each do |task| %>
       <div class="col-12 col-md-6">
           <%= link_to task_path(task), class: "no-dec" do %>
-        <div class="card shadow p-2 <%= task.status %>">
+        <div class="card shadow p-2">
             <h3 class="text-decoration-underline"><%=task.title%></h3>
             <p><%=task.description%></p>
           <div class="row mt-2 text-center">
@@ -22,7 +22,7 @@
             <div class=" mt-2 col-12 d-inline-flex justify-content-between">
               <div class="flex d-inline-flex">
                 <p class="mb-0 me-2">Status:</p>
-                <p class="mb-0 fw-bold"><%= task.status %></p>
+                <p class="mb-0 fw-bold <%= task.status %>"><%= task.status %></p>
               </div>
               <div class="flex d-inline-flex">
                 <p class="mb-0 me-2">Priority:</p>
