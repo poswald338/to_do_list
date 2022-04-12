@@ -31,6 +31,11 @@ class TasksController < ApplicationController
   end
 
   def update
+    
+    # collab_users = get_params[:collaborators].split(/\s*,\s*/)
+    # collab_users.each do |user|
+    #   @task << User.find_by_email(user) if !@task.users.any?{|a| a.email == user}
+    # end
     if @task.update(get_params)
       flash[:notice] = "Task is updated successfully!"
       redirect_to tasks_path
@@ -51,7 +56,15 @@ class TasksController < ApplicationController
   end
 
   def get_params
-    params.require(:task).permit(:title, :description, :priority, :status)
+    byebug
+    params.require(:task).permit(:title, :description, :priority, :status, :collaborators)
+  end
+  def get_special_params
+    params = params.require(:task).permit(:title, :description, :priority, :status, :collaborators)
+    collabs = params[:collaborators].split(/\s*,\s*/)
+    collabs.each do |user|
+      @task << User.find_by_email(user) if !@task.users.any?{|a| a.email == user}
+    end
   end
 
   def require_same_user
