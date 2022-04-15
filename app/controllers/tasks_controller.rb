@@ -3,6 +3,17 @@ class TasksController < ApplicationController
   before_action :require_same_user, only: [:show, :update, :edit]
   before_action :set_task, only: [:show, :update, :edit, :destroy]
 
+  def remove_user
+    @task = Task.find(params[:task])
+    @user = User.find(params[:user])
+    if @task.users.destroy(@user)
+      flash[:notice] = "User has been removed from the task."
+      redirect_to @task
+    else
+      flash[:alert] = "Something went wrong."
+    end
+  end
+
   def show
   end
 
@@ -31,12 +42,10 @@ class TasksController < ApplicationController
   end
 
   def update
-    
-    # collab_users = get_params[:collaborators].split(/\s*,\s*/)
-    # collab_users.each do |user|
-    #   @task << User.find_by_email(user) if !@task.users.any?{|a| a.email == user}
-    # end
     if @task.update(get_params)
+      get_special_params[:users].split(/\s*,\s*/).each do |email|
+        (@task.users << User.find_by_email(email)) if !@task.users.any?{|a| a.email == email}
+      end
       flash[:notice] = "Task is updated successfully!"
       redirect_to tasks_path
     else
@@ -46,7 +55,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:message] = "Task was successfully deleted!"
+    flash[:notice] = "Task was successfully deleted!"
     redirect_to tasks_path
   end
 
@@ -56,15 +65,10 @@ class TasksController < ApplicationController
   end
 
   def get_params
-    byebug
-    params.require(:task).permit(:title, :description, :priority, :status, :collaborators)
+    params.require(:task).permit(:title, :description, :priority, :status)
   end
   def get_special_params
-    params = params.require(:task).permit(:title, :description, :priority, :status, :collaborators)
-    collabs = params[:collaborators].split(/\s*,\s*/)
-    collabs.each do |user|
-      @task << User.find_by_email(user) if !@task.users.any?{|a| a.email == user}
-    end
+    params.require(:task).permit(:users)
   end
 
   def require_same_user

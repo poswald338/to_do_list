@@ -29,6 +29,7 @@
               <% end %>
               <% if @task.created_by == @current_user.username && user != current_user %>
                 <p class="ms-4 mb-0 text-danger">Remove User</p>
+                <%= link_to 'Remove User', remove_user_path(:task => @task, :user => user), class: "dropdown-item", method: :patch, class: "ms-4 mb-0 text-danger" %>
               <% end %>
             </div>
           <% end %>
@@ -44,7 +45,6 @@
       </div>
       <p class="mt-4 mb-2">Notes:</p>
       <div class="border mb-5" style="width: 700px; min-height: 300px;">
-
       </div>
     </div>
   </div>
