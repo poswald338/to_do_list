@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>You made it!</h1>
+
+  <% current_user.notifications.each do |note| %>
+
+    <span> <%= note.title %>: <%= note.note %> </span>
+
+  <% end %>
+</div>

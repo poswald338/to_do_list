@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :users
+  get 'notifications', to: 'notifications#index'
 end
