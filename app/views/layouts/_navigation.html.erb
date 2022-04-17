@@ -6,25 +6,37 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <% if logged_in? %>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Add To-do", new_task_path, class: "nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "To Do's", tasks_path, class: "nav-link" %>
-        </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span>Hello, </span> <%= current_user.username%>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><%= link_to 'View Profile', user_path(current_user), class: "dropdown-item" %></li>
-              <li><%= link_to 'Log Out', logout_path, class: "dropdown-item", method: :delete %></li>
-              <li><%= link_to "Delete Account", user_path(current_user), data: { controller: 'sweetalert', action: 'click->sweetalert#showAlert'}, method: :delete, class: "dropdown-item text-danger" %></li>
-            </ul>
-          </li>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "Add To-do", new_task_path, class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "To Do's", tasks_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Hello, </span> <%= current_user.username%>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><%= link_to 'View Profile', user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to 'Log Out', logout_path, class: "dropdown-item", method: :delete %></li>
+                <li><%= link_to "Delete Account", user_path(current_user), data: { controller: 'sweetalert', action: 'click->sweetalert#showAlert'}, method: :delete, class: "dropdown-item text-danger" %></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-bell fa-lg text-secondary"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                <% current_user.notifications.each do |message| %>
+                  <li>
+                    <p class="p-2"><%= message.title %>: <%= message.note %> </p>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
         <% end %>
-      </ul>
     </div>
   </div>
 </nav>

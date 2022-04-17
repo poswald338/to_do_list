@@ -45,6 +45,14 @@
       </div>
       <p class="mt-4 mb-2">Notes:</p>
       <div class="border mb-5" style="width: 700px; min-height: 300px;">
+
+        <% current_user.notifications.each do |message| %>
+
+          <%= message.title %>
+          <%= message.note %>
+          <i class="fab fa-twitter fa-2x"></i>
+
+        <% end %>
       </div>
     </div>
   </div>
