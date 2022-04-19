@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   get '', to: 'sessions#new'
   post '', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  post 'tasks', to: 'tasks#change_title'
   patch 'remove_user', to: 'tasks#remove_user'
 
   resources :tasks
   resources :users
-  get 'notifications', to: 'notifications#index'
+  resources :notifications
 end

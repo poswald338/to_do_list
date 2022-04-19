@@ -15,10 +15,20 @@ class TasksController < ApplicationController
   end
 
   def show
+    
   end
 
   def index
-    @tasks = current_user.tasks
+    query = params[:search]
+    if query == "complete"
+      @tasks = current_user.tasks.completed.order('created_at DESC')
+    elsif query == "incomplete"
+      @tasks = current_user.tasks.incomplete.order('created_at DESC')
+    elsif query == "in_progress"
+      @tasks = current_user.tasks.in_progress.order('created_at DESC')
+    else
+      @tasks = current_user.tasks.order('created_at DESC')
+    end
   end
 
   def new
@@ -44,7 +54,12 @@ class TasksController < ApplicationController
   def update
     if @task.update(get_params)
       get_special_params[:users].split(/\s*,\s*/).each do |email|
-        (@task.users << User.find_by_email(email)) if !@task.users.any?{|a| a.email == email}
+        @user = User.find_by_email(email)
+        if !@task.users.any?{|a| a.email == email}
+          (@task.users << @user)
+          notif = Notification.new(title: "Hi", note: "you have been added to a task!", sender_id: current_user.id, recipient_id: @user.id)
+          @user.notifications << notif
+        end
       end
       flash[:notice] = "Task is updated successfully!"
       redirect_to tasks_path

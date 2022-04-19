@@ -16,6 +16,8 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :priority, presence: true, numericality: {less_than_or_equal_to: 3}
 
-  scope :completed, -> {where(:isComplete => true)}
+  scope :completed, -> {where(status: "Complete")}
+  scope :incomplete, -> {where(status: "Incomplete")}
+  scope :in_progress, -> {where(status: "In Progress")}
   scope :long_title, -> {where("LENGTH(title) > 20")}
 end

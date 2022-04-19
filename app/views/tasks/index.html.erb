@@ -1,8 +1,15 @@
 <div class="container">
   <h1 class="mb-4 mt-4 text-center">Your Current To-Do's</h1>
   <div class="row">
-    <div>
-      <h3>Filter:</h3>  
+    <div class="d-flex justify-content-center">
+      <div class="mb-2">
+        <%= form_tag tasks_path, :method => "get" do %>
+          <%= label_tag(:search, "Filter Tasks", class: "form-label") %>
+          <br>
+          <%= select_tag(:search, options_for_select(["","incomplete", "complete", "in_progress"], class: "form-control"), data: {placeholder: "Hi"}, selected: params[:search]) %>
+          <%= submit_tag("Filter", :name => nil, class: "btn btn-primary") %>
+        <% end %>  
+      </div>
     </div>
   </div>
   <div class="row">

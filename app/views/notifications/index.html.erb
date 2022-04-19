@@ -1,9 +1,53 @@
 <div class="container">
-  <h1>You made it!</h1>
-
-  <% current_user.notifications.each do |note| %>
-
-    <span> <%= note.title %>: <%= note.note %> </span>
-
-  <% end %>
+  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb" class="mt-2">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Tasks List", tasks_path, class: "no-dec" %></li>
+      <li class="breadcrumb-item active" aria-current="page">Notifications</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-center">
+    <div class="mt-4 mb-4 text-center">
+      <h1>Notifications</h1>
+    </div>
+  </div>
+  <div class="col-12 table-responsive-sm">
+    <table class="table table-hover mb-5">
+      <thead>
+        <tr class="titles">
+          <th scope="col">Title</th>
+          <th scope="col"><p class="text-center mb-0">Message</p></th>
+          <th scope="col"><p class="text-end mb-0">Date</p></th>
+        </tr>
+      </thead>
+      <% if current_user && current_user.notifications %>
+        <tbody>
+          <% current_user.notifications.each do |notif| %>
+            <tr>
+              <th scope="row">
+                <p class="mb-0"> <%= notif.title %> </p>
+              </th>
+              <td>
+                <p class="text-center mb-0 status"><%= notif.note %></p>
+              </td>
+              <td>
+              <div class="d-flex justify-content-end">
+                <p class="text-end mb-0"><%= notif.created_at.strftime('%m/%d/%Y') %></p>
+                <%= link_to notification_path(notif), method: :delete do %>
+                  <i class="ms-2 fa-solid fa-trash align-middle text-black"></i>
+                <% end %>
+              </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+      <% if current_user && current_user.notifications == [] %>
+        <tbody *ngIf="notifications && !isLoading && notifications.length === 0">
+          <tr scope="row" class="text-center w-100" class="no-notif">
+            <h3>There Are No Notifications</h3>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
 </div>
