@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   def require_same_user
     user = User.find(params[:id])
     if user != current_user
-      flash[:alert] = "You can only view tasks which you are a collaborator on."
+      flash[:alert] = "Access denied."
       redirect_to user_path(current_user)
     end
   end

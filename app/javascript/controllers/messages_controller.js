@@ -24,6 +24,7 @@ export default class extends Controller {
       }
       Swal.fire(
         message,
+        "",
         icon
       ).then(() => {
         this.nameTarget.dataset.info = ""

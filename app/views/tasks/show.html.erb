@@ -28,7 +28,6 @@
                 <%= link_to user.username, user_path(user), class: "badge rounded-pill p-2 bg-primary mb-2 text-decoration-none" %>
               <% end %>
               <% if @task.created_by == @current_user.username && user != current_user %>
-                <p class="ms-4 mb-0 text-danger">Remove User</p>
                 <%= link_to 'Remove User', remove_user_path(:task => @task, :user => user), class: "dropdown-item", method: :patch, class: "ms-4 mb-0 text-danger" %>
               <% end %>
             </div>

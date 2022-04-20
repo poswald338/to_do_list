@@ -41,8 +41,17 @@ class TasksController < ApplicationController
     
     if @task.save
       @task.users << current_user
-      flash[:notice] = "A new task has been created!"
-      redirect_to tasks_path
+      get_special_params[:users].split(/\s*,\s*/).each do |email|
+        if @user = User.find_by_email(email)
+          if !@task.users.any?{|a| a.email == email}
+            (@task.users << @user)
+            notif = Notification.new(title: "Hi", note: "you have been added to a task!", sender_id: current_user.id, recipient_id: @user.id)
+            @user.notifications << notif
+          end
+        end
+        flash[:notice] = "A new task has been created!"
+        redirect_to tasks_path
+      end
     else
       render :new
     end
@@ -54,11 +63,12 @@ class TasksController < ApplicationController
   def update
     if @task.update(get_params)
       get_special_params[:users].split(/\s*,\s*/).each do |email|
-        @user = User.find_by_email(email)
-        if !@task.users.any?{|a| a.email == email}
-          (@task.users << @user)
-          notif = Notification.new(title: "Hi", note: "you have been added to a task!", sender_id: current_user.id, recipient_id: @user.id)
-          @user.notifications << notif
+        if @user = User.find_by_email(email)
+          if !@task.users.any?{|a| a.email == email}
+            (@task.users << @user)
+            notif = Notification.new(title: "Hi", note: "you have been added to a task!", sender_id: current_user.id, recipient_id: @user.id)
+            @user.notifications << notif
+          end
         end
       end
       flash[:notice] = "Task is updated successfully!"
