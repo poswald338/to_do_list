@@ -19,5 +19,5 @@ class Task < ApplicationRecord
   scope :completed, -> {where(status: "Complete")}
   scope :incomplete, -> {where(status: "Incomplete")}
   scope :in_progress, -> {where(status: "In Progress")}
-  scope :long_title, -> {where("LENGTH(title) > 20")}
+  # scope :long_title, -> {where("LENGTH(title) > 20")}
 end

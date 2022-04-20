@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :require_same_user, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -50,5 +51,13 @@ class UsersController < ApplicationController
 
   def set_user 
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    user = User.find(params[:id])
+    if user != current_user
+      flash[:alert] = "You can only view tasks which you are a collaborator on."
+      redirect_to user_path(current_user)
+    end
   end
 end
