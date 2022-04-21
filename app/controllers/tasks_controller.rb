@@ -42,6 +42,7 @@ class TasksController < ApplicationController
     
     if @task.save
       @task.users << current_user
+      if get_special_params[:users] != nil
       get_special_params[:users].split(/\s*,\s*/).each do |email|
         if @user = User.find_by_email(email)
           if !@task.users.any?{|a| a.email == email}
@@ -50,6 +51,7 @@ class TasksController < ApplicationController
             @user.notifications << notif
           end
         end
+      end
         flash[:notice] = "A new task has been created!"
         redirect_to tasks_path
       end
