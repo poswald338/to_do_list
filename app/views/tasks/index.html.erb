@@ -6,11 +6,14 @@
         <%= form_tag tasks_path, :method => "get" do %>
           <%= label_tag(:search, "Filter Tasks", class: "form-label") %>
           <br>
-          <%= select_tag(:search, options_for_select(["","incomplete", "complete", "in_progress"], class: "form-control"), data: {placeholder: "Hi"}, selected: params[:search]) %>
+          <%= select_tag(:search, options_for_select(["Show All", "Incomplete", "Complete", "In Progress"], class: "form-control"), data: {placeholder: "Hi"}, selected: params[:search]) %>
           <%= submit_tag("Filter", :name => nil, class: "btn btn-primary") %>
         <% end %>  
       </div>
     </div>
+      <% if !@tasks.any? %>
+        <h3 class="text-center mt-4">Could not find any tasks.</h3>
+      <% end %>
   </div>
   <div class="row">
     <% @tasks.each do |task| %>

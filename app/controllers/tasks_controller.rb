@@ -20,13 +20,14 @@ class TasksController < ApplicationController
 
   def index
     query = params[:search]
-    if query == "complete"
+    case query
+    when "Complete"
       @tasks = current_user.tasks.completed.order('created_at DESC')
-    elsif query == "incomplete"
+    when "Incomplete"
       @tasks = current_user.tasks.incomplete.order('created_at DESC')
-    elsif query == "in_progress"
+    when "In Progress"
       @tasks = current_user.tasks.in_progress.order('created_at DESC')
-    else
+    else 
       @tasks = current_user.tasks.order('created_at DESC')
     end
   end
